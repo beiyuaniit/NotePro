@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>index page...</h2>
+<br>
+<form action="/rest" method="get">
+    <input value="REST-GET提交" type="submit" />
+</form>
+
+<form action="/rest" method="post">
+    <input value="REST-POST提交" type="submit" />
+</form>
+
+<form action="/rest" method="post">
+    <input name="_method" type="hidden" value="DELETE"/>
+    <input value="REST-DELETE 提交" type="submit"/>
+</form>
+
+<form action="/rest" method="post">
+    <input name="_method" type="hidden" value="PUT" />
+    <input value="REST-PUT提交"type="submit" />
+</form>
+<br>
+<h3>文件上传</h3>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    头像：<input type="file" name="headerImg"><br>
+    <input type="submit" value="上传">
+</form>
+<br>
+
+<form th:action="@{/testUp}" method="post" enctype="multipart/form-data">
+    头像：<input type="file" name="photo"><br>
+    <input type="submit" value="上传"><br>
+</form>
+<br>
+
+
+</body>
+</html>

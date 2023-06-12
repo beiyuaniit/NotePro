@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace:命名空间，用来区分不同mapper.xml文件-->
+<mapper namespace="mybatisProxy.StusMapper">
+    <!--
+
+    -->
+    <select id="getAll" resultType="Student" >
+       select id,name,email,age from st
+   </select>
+
+    <select id="getById" parameterType="int" resultType="int">
+        select id,name,email,age from st
+        where name like concat('%',#{name},'%')
+    </select>
+
+    <select id="getByName" resultType="Student">
+        select id,name,email,age from  st
+        where ${conlumnName} like concat('%',#{conlumnValue},'%')
+    </select>
+
+    <insert id="insert" parameterType="Student">
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into st (name,email,age) values (#{name},#{email},#{age})
+    </insert>
+
+<!--  代码片段  -->
+    <sql id="allColumns">
+        id,name,email,age
+    </sql>
+
+    <select id="selAll" resultType="Student">
+        select <include refid="allColumns"></include>
+        from st
+    </select>
+
+<!--  多条件判断  -->
+    <select id="selCons" resultType="Student" parameterType="Student">
+        select <include refid="allColumns"></include>
+        from st
+        <where>
+            <!-- 模糊查询-->
+            <if test="name !=null and name !=''">
+                and name like concat('%',#{name},'%')
+            </if>
+            <!-- 等值查询-->
+            <if test="age !=0">
+                and age=#{age}
+            </if>
+        </where>
+    </select>
+
+<!--  条件更新  -->
+    <!--旧的存在问题，如果某个值没有赋值，如name，则会被更新为null-->
+    <update id="updateNor" parameterType="Student">
+        update st set name =#{name},email=#{email},age=#{age}
+        where id=#{id}
+    </update>
+
+    <update id="updateCons" parameterType="Student">
+        update st
+        <set>
+            <!--所以先判读有没有值-->
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email},
+            </if>
+            <if test="age!=0">
+                age=#{age}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+<!--  查询多个指定id的学生信息  -->
+    <select id="getByIds" resultType="Student">
+        select <include refid="allColumns"></include>
+        from st
+        where id in
+            <foreach collection="array" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+    </select>
+
+<!--  单行用Map  -->
+    <select id="getMap" resultType="map" parameterType="int">
+        select name,age
+        from st
+        where id=#{id}
+    </select>
+<!--  多行用List<Map>  -->
+    <select id="getMaps" resultType="map">
+        select name,age
+        from st
+    </select>
+
+<!--  取别名  -->
+    <select id="getOt" resultType="Student">
+        select id,name,age,email from st
+        where id=#{id}
+    </select>
+
+
+</mapper>

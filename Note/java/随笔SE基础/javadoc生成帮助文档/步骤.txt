@@ -1,0 +1,12 @@
+新建一个文件夹如Javaapi用来存放文档
+新建源代码，注释格式
+/**
+ *
+ *
+ */
+注释中有@字样
+可以标明作者author  版本version等等
+当前目录cmd
+输入指令javadoc -d javaapi  -author  -version  Rain.java
+在javaapi文件中index.html查看所有类
+在javappi文件中Rain.html查看Rain类

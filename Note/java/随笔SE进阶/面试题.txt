@@ -1,0 +1,12 @@
+-java中凡是没有方法体的方法都是抽象方法？
+	错误
+		比如Object类中很多方法就没有方法体
+			public native int hashCode();
+			native表示底层C++实现，调用JVM本地程序
+		
+-以下程序创建了几个对象
+	String s1=new String("rain");
+	String s2=new String("rain");
+	三个：
+		堆区中两个String对象
+		字符串常量池中有一个"rain"

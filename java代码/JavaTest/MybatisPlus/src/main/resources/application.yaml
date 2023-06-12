@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/beimysql?serverTimezone=GMT%2B8
+    username: root
+    password: beiyuan3721
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

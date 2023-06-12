@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IndexPage</title>
+</head>
+<body>
+<!--这里的项目名是 /Servlet ，无法动态获取，先写死-->
+<a href="/Servlet/student">Student list</a><br>
+
+<h1>GET提交</h1>
+<!--action中是url，可以任意。在web.xml配置好就能访问相关Servlet-->
+<form action="/Servlet/getReq" method="get">
+    username<input type="text" name="username" /><br>
+    password<input type="password" name="userpwd" /><br>
+    <input type="submit" value="login"/>
+</form>
+
+<h1>POST提交</h1>
+<form action="/Servlet/postReq" method="post">
+    username<input type="text" name="username" /><br>
+    password<input type="password" name="userpwd" /><br>
+    <input type="submit" value="login"/>
+</form>
+</body>
+</html>

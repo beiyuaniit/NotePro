@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <import resource="applicationContext_*.xml"></import>
+    <!--  当然也可以一个个导入  -->
+    <!--  <import resource="applicationContext_controller.xml"></import>  -->
+</beans>

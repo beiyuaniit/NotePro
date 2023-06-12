@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace:命名空间，用来区分不同mapper.xml文件-->
+<mapper namespace="stu">
+    <!--
+    如查询全部学生信息
+    函数形式:List<Student> getAll(){}
+    selecct
+        id:不同sql语句的标识
+        resultType:结果集类型，如果是集合，则用泛型。底层通过反射创建JavaBean，所以要提供全限名称。一行数据一个对象
+
+    -->
+   <select id="getAll" resultType="Student" >
+       select id,name,email,age from st
+   </select>
+
+    <!--
+    传入参数
+    Student getById(Integer id)
+    可以写int，是Integer别名，映射为Java的Integer。
+    #{id}中id名字可以乱写？
+    -->
+    <select id="getById" parameterType="int" resultType="Student">
+        select id,name,email,age from st
+        where id=#{id}
+    </select>
+
+    <!--
+     模糊查询
+     List<Student> getByName(String name)
+     传递的字符串本身没有单双引号，like后面加上就好了
+
+     #{}是占位符? PreparaedStatement，${}是字符串拼接 Statement
+     此处只能是字符串拼接
+     -->
+    <select id="getByName" parameterType="String" resultType="student">
+        select id,name,email,age from st
+--         where name like '%${name}%'
+ where name like concat('%',#{name},'%')
+    </select>
+
+    <!--
+    增删改查不用手写返回值
+    增加
+    int insert(Student stu)
+    values 对应的是Student中的属性
+    -->
+    <insert id="insertOne" parameterType="org.example.Student">
+        insert into st(name,email,age) values(#{name},#{email},#{age})
+    </insert>
+</mapper>

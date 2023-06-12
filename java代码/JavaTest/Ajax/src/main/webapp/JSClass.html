@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        window.onload=function () {
+            document.getElementById("btn").onclick=function () {
+                //定义一个类
+                User = function (usercode, username) {
+                    //属性
+                    this.usercode = usercode;
+                    this.username = username;
+                    //实例方法
+                    this.doSome = function () {
+                        console.log("do something");
+                    }
+                    //静态方法(类名调用)
+                    User.doOther = function () {
+                        console.log("do other");
+                    }
+                }
+                //User()  当作普通函数执行，不会创建对象
+                //创建对象，并放入堆中
+                var user = new User("123", "libai");
+                console.log(user.username);//属性
+                user.doSome();
+                User.doOther();
+
+                //后期想追加方法。用prototype属性
+                User.prototype.doOne = function () {
+                    console.log("do one thing");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="click">
+</body>
+</html>

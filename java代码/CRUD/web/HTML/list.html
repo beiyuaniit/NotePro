@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部门列表</title>
+	<script type="text/javascript">
+		function del(deptno){
+			var ok=window.confirm("删除了不可恢复");
+			if(ok){
+				// 发送请求
+				window.location="/CRUD/dept/delete?deptno="+deptno;
+			}
+		}
+	</script>
+	
+	
+</head>
+<body>
+
+<h1>部门</h1><br >
+<table border="1px" align="center" width="60%">
+	<tr>
+		<th>编号</th>
+		<th>名称</th>
+		<th>地区</th>
+		<th>操作</th>
+	</tr>
+	<tr>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>
+			<a href="javascript:void(0)" onclick="del(10)">删除</a>
+			<a href="edit.html">修改</a>
+			<a href="detail.html">详情</a>
+		</td>
+	</tr>
+	<tr>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>
+			<a href="">删除</a>
+			<a href="edit.html">修改</a>
+			<a href="detail.html">详情</a>
+		</td>
+	</tr>
+	<tr>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>
+			<a href="">删除</a>
+			<a href="edit.html">修改</a>
+			<a href="detail.html">详情</a>
+		</td>
+	</tr>
+</table>
+<a href="add.html">新增部门</a>
+</body>
+</html>

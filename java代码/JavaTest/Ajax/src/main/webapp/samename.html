@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        window.onload=function () {
+            document.getElementById("username").onblur=function () {//失去焦点时发送请求
+                var xhr=new XMLHttpRequest();
+                xhr.onreadystatechange=function () {
+                    if(this.readyState==4){
+                        if(this.status==200){
+                            document.getElementById("tipMsg").innerHTML=this.responseText;
+                        }else {
+                            alert(status);
+                        }
+                    }
+                }
+                xhr.open("POST","/Ajax/same",true);
+                xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                var name=document.getElementById("username").value;
+                xhr.send("username="+name);
+            }
+        }
+    </script>
+</head>
+<body>
+username<input type="text" id="username">
+<span id="tipMsg"></span>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--  读取属性配置文件(mysql.properties)  resources:从资源目录下读取  url：绝对路径。从磁盘读取，如C盘之类-->
+    <properties resource="mysql.properties"></properties>
+
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <typeAliases >
+        <package name="org.example"/>
+    </typeAliases>
+    <!--  配置数据库环境(连接信息)  -->
+
+    <!--  可以有多套配置，不同时候可以选择不同配置  default="" 默认使用的-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+
+    </environments>
+   <mappers>
+       <mapper class="mybatisProxy.StusMapper"></mapper>
+   </mappers>
+</configuration>

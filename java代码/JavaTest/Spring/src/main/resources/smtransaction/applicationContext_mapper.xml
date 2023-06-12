@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--读取属性配置文件-->
+    <context:property-placeholder location="mysql.properties" ></context:property-placeholder>
+
+    <!--  创建数据源  用Druid连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!--  怎么读取不了配置文件${driver}.明明上面已经加载成功了   -->
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/beimysql"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="beiyuan3721"></property>
+    </bean>
+    <!--  配置SqlSessionFactoryBean类  完成mybatis中SqlSessionFactory类的功能-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--  配置数据源,用上面配置好的  -->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--  配置mybatis核心配置文件.毕竟有些功能要在这里完成  -->
+        <property name="configLocation" value="SqlMapConfig.xml"></property>
+        <!--  注册实体类别名,类就可以不用全限定名了   -->
+        <property name="typeAliasesPackage" value="sm.pojo"></property>
+    </bean>
+    <!--
+        注册mapper.xml   让该配置文件知道mapper在哪
+        由mybatis自己创建相应访问数据库的mapper对象
+        不取id,反正程序员自己又用不到,系统调用就行
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="sm.mapper"></property>
+    </bean>
+</beans>

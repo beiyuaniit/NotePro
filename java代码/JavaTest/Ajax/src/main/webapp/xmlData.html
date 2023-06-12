@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        window.onload=function () {
+            document.getElementById("btn").onclick=function () {
+                var xhr=new XMLHttpRequest();
+                xhr.onreadystatechange=function () {
+                    if(this.readyState==4&& this.status==200) {
+                        var xmlDoc = this.responseXML;
+                        console.log(xmlDoc)
+                        var stuList = xmlDoc.getElementsByTagName("students");//整个列表
+                        for (var i = 0; i < stuList.length; i++) {
+                            var nameOrAge = stuList[i].childNodes;//每个student
+                            for (var j = 0; j < nameOrAge.length; j++) {//student的具体属性值
+                                if (nameOrAge[j].nodeName == "name")
+                                    console.log("name" + nameOrAge[j].textContent)
+                                else
+                                    console.log("age" + nameOrAge[j].textContent)
+                            }
+                        }
+                    }
+                }
+                xhr.open("GET","/Ajax/xml",true);
+                xhr.send();
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+<input type="button" id="btn" value="button">
+</body>
+</html>

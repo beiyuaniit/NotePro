@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        window.onload=function () {
+            document.getElementById("httpBut").onclick=function () {
+                //创建对象
+                //this代表xhr
+                var xhr=new XMLHttpRequest();
+                //回调函数
+                xhr.onreadystatechange=function () {
+                    if(xhr.readyState==4){
+                        if(this.status==200){
+                            //alert("sucessful")
+
+                            /*
+                            数据渲染到某个容器中如div
+                            responseText拿到out.print()或out.write()
+                            document.getElementById("mydiv").innerText=this.responseText;//当作普通文本输出
+                             */
+                            //当作html代码，解释并执行
+                            document.getElementById("mydiv").innerHTML=this.responseText;
+
+                        }else if(this.status==404){//4和200不写一起可以拿到404
+                            alert("Not Found");
+                        }else {
+                            alert(this.status);
+                        }
+                    }
+                }
+                //打开通道
+                //xhr.open("GET","/Ajax/httpReq",true);
+                //xhr.open("POST","/Ajax/httpReq",true);//POST请求
+
+                //GET提交数据
+                /*
+                xhr.open("GET","Ajax/httpReq?username=lisi&password=123",true)
+                var name="zhangsan";
+                var pwd="217";
+                 */
+                /*
+                var name=document.getElementById("username").value;
+                var pwd=document.getElementById("password").value;
+                xhr.open("GET","/Ajax/httpReq?username="+name+"&password="+pwd,true);
+                 */
+
+                //发送GET请求
+                //xhr.send();
+
+                /*
+                POST请求并提交表单数据
+                 */
+                xhr.open("POST","/Ajax/httpReq",true);
+                //得这样设置请求头来模拟提交表单数据。在open之后设置
+                xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+                var name=document.getElementById("username").value;
+                var pwd=document.getElementById("password").value;
+                //send中提交会自送放到请求体。而open是将数据放到请求头
+                xhr.send("username="+name+"&password="+pwd);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<input id="httpBut"  type="button" value="hello"><br>
+username<input id="username" type="text" ><br>
+passwork<input id="password" type="text"><br>
+<div id="mydiv"></div>
+
+<!--<form enctype="application/x-www-form-urlencoded"></form>-->
+</body>
+</html>

@@ -1,0 +1,88 @@
+-数组是
+	引用数据类型，父类是Object
+	一个容器，容纳多个类型相同的元素，数据的集合
+	
+
+-数组特点
+	可以存放基本数据类型的值，也可以是对象的引用
+	一旦创建，长度不可以改变
+	自带length属性，获取数组中元素个数
+	内存地址是连续的
+
+-声明/定义
+	建议使用的java风格
+		类型 [] 数组名
+	C++风格
+	类型 数组名 []
+
+-初始化
+	静态初始化
+		int []array={x,y,z};
+	动态初始化
+		默认值是0类型
+		int []array=new int[5]
+		之后再赋值
+		
+-ArrayIndexOutOfBoundsException
+	数组越界异常
+
+-main方法的格式还可以采用C++的格式
+	public static void main(String args[]){}
+
+-数组作为方法参数(二维数组原理一致)
+	普通
+		修饰符	返回值类型 方法名(int []array){}{}
+	还可以直接传递静态数组
+		方法名(new int []{1,3,2});[]中没有数字
+		可以称为匿名数组吧
+		
+-main的String数组
+	JVM调用main方法时会自动传递一个String数组过来
+	args.length默认值是0,但args不是null，不会空指针异常
+		平时也可以创建长度为0的数组，表示没有任何数据
+	在运行时在类名后面传递String数组
+		如：java Test01 abc xyz
+		输出时可以args[i]
+		用IDEA时用Run->Edit Config…->Program arguments输入就可以了
+
+-作用：需要用户输入密码才可以登录系统
+	
+-用不为空的对象如"abc"来调用equals方法判断密码是否正确
+
+-可以用父类类型创建元素为子类的数组
+	Animal []anis={new Cat(),new Birs());
+	用法和多态没有区别
+
+-拷贝数组
+	System.arraycopy(array1,1,array2,3,length:2)
+	从数组1中下标为1往后长度为2的数组拷贝到数组2中下标为3的位置
+	可以用来数组扩容（效率低，尽量少用）
+	数组一经定义不可变，扩容只是新建了数组
+	
+-二维数组
+	每行长度可以不一样（因为每个元素都是一维数组）
+		如：int[][]arr={
+						{1,2,3}
+						{3,2}
+						{3,6,7,2}
+					};
+			arr.length=4;（真就是一维数组呗）
+			arr[0].length=3;
+
+-遍历二维数组
+	array.legth
+		array[i].length
+	
+-输出换行
+	System.out.println();
+
+-Object数组
+	Object[]array=[new name01(),new name02(),"abc"]
+	可以放所有引用数据类型
+
+-return;
+	退出方法
+
+-java.util.Arrays
+	数组工具类
+	Arrays.sort(name)静态方法，直接类名调用

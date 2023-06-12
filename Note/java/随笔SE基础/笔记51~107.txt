@@ -1,0 +1,72 @@
+-控制语句：
+	选择：
+		if,if..else,if..else if..esle;
+		switch;
+	循环:
+		for;
+		while
+		do..while;
+	控制循环:
+		break;
+		continue;
+
+-接收用户输入：
+	创建键盘扫描对象
+		java.util.Scanner 对象名=new java.util.Scanner(System.in);
+	实例化变量：
+		类型名 变量名=对象名.next首字母大写的类型名();
+			如：int a=base.nextInt();
+			字符串这样就可以了String s=base.next();
+	一个对象可以创建多个变量
+	
+-此处+是字符串拼接
+	System.out.println("数字是:"+a+s);
+	
+
+-switch语句格式：
+	switch(比int小或者String类型字面值或者变量名name)//boolean和float和double不行
+	{
+		
+		case name1:
+			....
+			break;
+		case name2:
+			....
+			break;
+		....
+		default://否则的意思，相当于else
+			....
+	}
+	
+-do...while语句格式：
+	do{
+	....}while();
+	do一定执行再判断while
+	
+-方法（Method）：
+	一个类体中可以定义多个方法
+	不用声明
+	没有顺序之分
+	方法中不能嵌套方法，能调用方法
+	static修饰的方法引用时一般加类作用域（不加也可以）
+	调用其他类中的方法要加类作用域（不写就是当前类中）
+	调用时是值传递（不改变原参数）
+
+-方法重载
+	条件：
+		在同一类中
+		方法名一致
+		参数：
+			数量不同
+			顺序不同
+			类型不同
+		返回值：
+			可以不同，但是不能只是返回值不同
+			
+-方法递归
+		判断条件放在递归调用前面
+		
+		
+		
+-try
+	语句待补充

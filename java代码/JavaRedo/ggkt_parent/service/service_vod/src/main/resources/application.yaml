@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/glkt_vod?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: beiyuan3721
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
+#自定义的
+tencent:
+  cos:
+    file:
+      region: ap-nanjing
+      secretId: AKIDmOmwsZ3Yx88wnbBXfZEey60f9QVL05wZ
+      secretkey: SjndGhwwhEj8ID6uY2IK8mBNL4YXIp7D
+      bucketName: ggkt-1309913128
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:com/beiyuan/vod/mapper/xml/*.xml
+server:
+  port: 8301

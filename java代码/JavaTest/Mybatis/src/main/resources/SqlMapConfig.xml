@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--
+.dtd文档类型定义。描述了当前xml文件的规范。如可以出现哪些标签，怎么使用
+.xsd也差不多，是xml的
+如
+<!ELEMENT databaseIdProvider (property*)>
+<!ATTLIST properties
+resource CDATA #IMPLIED
+url CDATA #IMPLIED
+>
+#()里是databaseIdProvider可以有的子标签.ATTLIST属性列表，如url
+
+<!ELEMENT configuration (properties?, settings?,...)    这里还有先后顺序，如settings得出现在properties之后
+-->
+<configuration>
+<!--  读取属性配置文件(mysql.properties)  resources:从资源目录下读取  url：绝对路径。从磁盘读取，如C盘之类-->
+    <properties resource="mysql.properties"></properties>
+
+    <settings>
+        <!--   输出日志到控制台   -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <typeAliases >
+    <!--  单个实体类注册。缺点：如果由几百张表，几百个实体类。。  -->
+<!--        <typeAlias type="org.example.Student" alias="Student"></typeAlias>-->
+    <!--  批量注册。就是导入包  直接使用类名Student或student都行-->
+        <package name="org.example"/>
+    </typeAliases>
+<!--  配置数据库环境(连接信息)  -->
+
+    <!--  可以有多套配置，不同时候可以选择不同配置  default="" 默认使用的-->
+    <environments default="development">
+        <!--    开发时    -->
+        <environment id="development">
+            <!--
+            配置事务管理器
+            type选项
+                JDBC:程序员来控制事务
+                MANAGED:由容器(如Spring)管理事务
+            -->
+            <transactionManager type="JDBC"/>
+            <!--
+            配置数据源
+            type选项
+                JNDI:java命名和目录接口，在服务端进行数据库连接池的管理
+                POOLED:使用数据库连接池
+                UNPOOLED:不使用
+            -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <!--  在家  -->
+        <environment id="home">
+            <transactionManager type=""></transactionManager>
+            <dataSource type=""></dataSource>
+        </environment>
+
+        <!--   上线-->
+        <environment id="online">
+            <transactionManager type=""></transactionManager>
+            <dataSource type=""></dataSource>
+        </environment>
+
+    </environments>
+
+<!--   注册mapper.xml     -->
+    <!--  指定方式：resource,url,class.  class是动态代理下的 -->
+    <mappers>
+        <mapper resource="StudentMapper.xml"/>
+<!--        <mapper class="mybatisProxy.StusMapper" />-->
+        <package name="mybatisProxy"/>
+    </mappers>
+
+
+</configuration>

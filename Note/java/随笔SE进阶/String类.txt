@@ -1,0 +1,96 @@
+-是不可变类，声明后不可修改
+
+-重写了toString()方法，可以直接输出
+
+-存储在方法区的字符串常量池，因为字符串态太常用了
+	GC不回收
+
+-new一定是在堆中创建对象的
+	String s=new String("XYZ");
+	
+-同一个字符串只有一份
+	String s1="rain";
+	String s2="rain";
+	s1和s2指向同一个rain
+	
+-用s1==s2可以判断是否相等，因为地址是一样的
+
+-创建了对象就不能直接用==
+	String s1="rain";
+	String s2="rain";
+	此时用==比较的对象的地址
+	可以用equals();
+	
+-构造方法
+	常用
+		String s="rain";
+	new
+		String s=new String("abc");
+	byte/char都行
+		byte[]b={97,98,99};//Ascill
+		String s=new String(b);//等价于s="abc"
+	部分构造
+		String s1=new String(b,1,2);//(字节数组，下标，长度）
+		s1="bc";
+
+-方法
+	charAt(i);
+		返回下标为i的值
+	compareTo();
+		前面减后面
+		0前后一致
+		-1前小后大
+		1前大后小
+	contains()
+		是否包含子字符串
+	endWith("i")
+		是否以i结尾，可以用来判断文件后缀
+	equals()
+		判断2个字符串是否相等
+	equalsIgnoreCase()
+		判断2个字符串是否相等，并且忽略大小写
+	getBytes()
+		将字符串转换为字节数组（Ascill）
+	toCharArray()
+		转换为字符数组
+	indexOf()
+		返回子字符串第一次出现的索引
+	isEmpty()
+		判断字符串值是否是空//底层调用的是length()方法
+	length()
+		返回字符串长度
+		注：这里是方法，而数组的length是属性
+	lasrIndexOf()
+		子字符串最后一次出现的下标
+	replace("i","j")
+		把j替换为i
+	split(i)
+		以i作为分割拆分字符串为字符串数组
+	startsWith()
+		是否以i开头
+	substring(i,j)
+		截取下标为i和j之间的字符串（包含i，不包含j）
+	toLowerCase()
+		转换为小写
+	toUpperCase()
+		转换为大写
+	trim()
+		去除前后空格 //比如登录验证时多输入了空格
+	valuOf()
+		将非字符串转换为字符串
+			唯一的静态方法，不用new
+			如果是对象（不局限于字符串），会调用toString()方法
+			println()底层调用了valueOf()方法，转化为字符串输出
+				所以println简洁调用了 toString()
+				
+-大量拼接字符串
+	简介
+		如果进行大量字符串拼接，用new字符串的方法会造成大量空间浪费
+		建议使用java.lang.StringBuffer和java.lang.StringBuilder
+	StringBuffer(线程安全)
+		底层是一个byte数组
+		拼接可以调用append()方法
+	StringBuilder(线程不安全)
+	
+	
+		

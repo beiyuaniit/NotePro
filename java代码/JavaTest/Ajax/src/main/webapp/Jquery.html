@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="JQuery-1.0.0.js"></script>
+<!--		<script type="text/javascript" src="jQuery-3.6.0.js"></script>-->
+		<script type="text/javascript">
+			$(function(){
+				$("#btn").click(function(){
+					console.log("clicked")
+					$("#div1").html("mobile phone")
+					$("#btn2").val("luyou");
+				})
+			})
+
+			$(function () {
+				$("#btn2").click(function (){
+					var age=$("#btn1").val();
+					$.ajax({
+						type:"Post",
+						url:"/Ajax/ajax",
+						data:"name=baijvyi&age="+age,
+						async:true,
+						dataType:"json",
+						success:function(json){
+							console.log("ok");
+							$("#div2").html(json.name+":"+json.age)
+						}
+					})
+				})
+			})
+
+
+		</script>
+	</head>
+	<body>
+		<input id="btn" value="click" type="button"/>
+		<input id="btn1"  type="text" />
+		<input id="btn2" type="button" value="ajax" />
+		<div id="div1"></div>
+		<div id="div2"></div>
+	</body>
+</html>

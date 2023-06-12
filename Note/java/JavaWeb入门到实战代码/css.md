@@ -1,0 +1,48 @@
+##语法
+	selector{
+		property:value;
+		...
+	}
+##外部样式
+	.css不包含html标签
+##导入
+	<head>
+		<link rel="stylesheet",href="mystyle.css" type="text/css" />
+	</head>
+	或者
+	<style type="text/css">
+		@import url("mystyle.css");
+	</style>
+##标签选择器
+	p{
+		color:red
+	}
+##类选择器
+	p.right{
+		text-algin:right
+	}
+##id选择器
+	p#svp{
+		font-size:12pt
+	}
+##超链接伪类
+	a:link{
+		color:red//未访问的超链接
+	}
+	a:visited{}
+	a:hover{}//鼠标指针悬浮在其上
+	a:active{}//鼠标点中激活
+##第一个字符
+	:first-letter
+	如
+		p:first-letter{
+			color:red;
+			font-size:16px
+		}
+##第一行
+	:first-line
+	如
+		div:first-line{
+			color:red;
+			font-size:16px
+		}

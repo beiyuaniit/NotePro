@@ -1,0 +1,23 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/music?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: beiyuan3721
+    type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    name: music_online
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+#自定义的 腾讯对象云
+tencent:
+  cos:
+    file:
+      region: ap-nanjing
+      secretId: AKIDmOmwsZ3Yx88wnbBXfZEey60f9QVL05wZ
+      secretkey: SjndGhwwhEj8ID6uY2IK8mBNL4YXIp7D
+      bucketName: music-1309913128

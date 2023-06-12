@@ -1,0 +1,114 @@
+
+day02-课堂笔记
+
+1、打开DOS命令窗口，执行java HelloWorld，执行原理？
+	* java.exe命令会启动JVM
+	* JVM启动之后会启动类加载器ClassLoader
+	* ClassLoader会在硬盘上的某个位置搜索HelloWorld.class字节码文件
+	* 找到该文件则执行
+	* 找不到该文件则报错
+
+	疑问:ClassLoader是在哪个位置上搜索HelloWorld.class字节码文件的？
+		* 默认情况下，ClassLoader从当前路径下加载xxx.class字节码文件
+		* 当然，也可以让ClassLoader去某个指定的路径下加载字节码文件，这时需要配置环境变量classpath
+		* classpath环境变量属于java语言中的环境变量，不属于windows操作系统【PATH环境变量属于操作系统】
+		* classpath是给ClassLoader类加载器指路的。
+		* 设置这样的环境变量：classpath=D:\course\JavaProjects\02-JavaSE\day02
+			- 打开dos命令窗口在任意位置，都可以执行：java HelloWorld
+		* classpath环境变量没有配置的话，类加载器默认从当前路径下找字节码文件，
+		当classpath环境变量配置为某个指定的路径之后，类加载器只去指定的路径当中加载字节码文件。
+		* 综上所述，环境变量classpath不再配置，这样类加载器会自动从当前路径下加载class字节码文件。
+		所以，每一次执行.class程序的时候，需要在DOS命令窗口中先切换到.class字节码文件所在的路径下。
+		然后运行。
+		* 当然，classpath也可以这样配置：classpath=.
+
+		注意：
+			路径中“..”表示上级目录
+			路径中“.”表示当前目录
+
+2、关于java源程序当中的注释：
+	
+	* 什么是注释？注释的作用是什么？
+		- 出现在java的源程序当中，对java源代码的解释说明
+		- 注释不会被编译到.class字节码文件当中
+		- 一个好的开发习惯应该是多编写注释，这样程序的可读性比较强。
+	
+	* java中的注释怎么写呢？
+		- 单行注释
+			//单行注释，只注释当前行
+
+		- 多行注释
+			/*
+				多行注释
+				多行注释
+				多行注释
+				多行注释
+				多行注释
+				.....
+			*/
+
+		- javadoc注释
+			/**
+			*	javadoc注释
+			*	javadoc注释
+			*	javadoc注释
+			*	javadoc注释
+			*	javadoc注释
+			*	javadoc注释
+			*/
+			注意：这种注释是比较专业的注释，该注释信息会被javadoc.exe工具解析提取并生成帮助文档。
+
+3、对HelloWorld程序进行解释：
+	需要记忆：
+		* public
+		* class
+		* static
+		* void
+		* System.out.println(""); 向控制台输出消息
+		* 类体
+		* 方法体
+		* 类体中不能直接编写java语句【除声明变量之外】
+		* 一个java语句必须以“;”结束
+		* 方法体中可以编写多条java语句
+		* 主方法是程序的入口，固定写法，SUN规定的。
+
+4、public class 和 class的区别：
+	
+	* 一个java源文件当中可以定义多个class
+
+	* 一个java源文件当中public的class不是必须的
+
+	* 一个class会定义生成一个xxx.class字节码文件
+
+	* 一个java源文件当中定义公开的类的话，只能有一个，并且该类名称必须和java源文件名称一致。
+
+	* 每一个class当中都可以编写main方法，都可以设定程序的入口，想执行B.class中的main方法：java B，
+	想执行X.class当中的main方法：java X
+
+	* 注意：当在命令窗口中执行java Hello，那么要求Hello.class当中必须有主方法。没有主方法会出现运行
+	阶段的错误：
+		D:\course\JavaProjects\02-JavaSE\day02>java Hello
+		错误: 在类 B 中找不到主方法, 请将主方法定义为:
+			public static void main(String[] args)
+
+5、总结第一章需要掌握的内容：
+	* 理解java的加载与执行
+	* 能够自己搭建java的开发环境
+	* 能够独立编写HelloWorld程序，编译并运行
+	* 掌握环境变量path的原理以及如何配置
+	* 掌握环境变量classpath的原理以及如何配置
+	* java中的注释
+	* public class 和 class 的区别
+	
+
+第二章：java语言基础
+
+1、标识符
+
+2、关键字
+
+3、字面值
+
+4、变量
+
+5、数据类型

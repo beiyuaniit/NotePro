@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <script type="text/javascript">-->
+<!--        /*-->
+<!--        创建语法-->
+<!--           var jsonobj={-->
+<!--                "属性名":属性值,-->
+<!--                "属性名":属性值,-->
+<!--                ...-->
+<!--           }-->
+<!--         属性值：类型没有限制。-->
+<!--         */-->
+<!--        var addr={-->
+<!--            "email":213-->
+<!--        }-->
+<!--        var user={-->
+<!--            "name":"lisi",-->
+<!--            "age":321,-->
+<!--            "sex":true,-->
+<!--            "likes":["music","pingpang"],-->
+<!--            "addr":addr-->
+<!--        }-->
+
+<!--        //.访问-->
+<!--        console.log(user.name)-->
+<!--        console.log(user.likes[0])-->
+<!--        console.log(user.addr.email)-->
+<!--        //[]-->
+<!--        console.log(user["name"])-->
+<!--    </script>-->
+
+<!--    <script type="text/javascript">-->
+<!--        var jsonStr="{\"name\":\"libai\",\"age\":312}"-->
+<!--        /*-->
+<!--        js字符串转json方式-->
+<!--        1.eval()函数。不过也会执行里面的代码，不安全，能不用就不用-->
+<!--        2.JSON.parse(str)。最常用-->
+<!--         */-->
+<!--        var jsonObj=JSON.parse(jsonStr)-->
+<!--        console.log(jsonObj.name)-->
+<!--    </script>-->
+
+    <script type="text/javascript">
+        window.onload=function () {
+            document.getElementById("btn").onclick=function () {
+                var xhr=new XMLHttpRequest();
+                xhr.onreadystatechange=function () {
+                    //console.log(this.responseText)
+                    if(this.readyState==4){
+                        if(this.status==200){
+                            var jsonObj=JSON.parse(this.responseText);
+                            console.log(jsonObj)
+                            console.log(jsonObj[0].name)
+                        }
+                    }
+                }
+                xhr.open("GET","/Ajax/jsontest",true);
+                xhr.send();
+            }
+
+            $=3;
+        }
+
+    </script>
+</head>
+<body>
+    <input type="button" id="btn" value="click">
+</body>
+</html>

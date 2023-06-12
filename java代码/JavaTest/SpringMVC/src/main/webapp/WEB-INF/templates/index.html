@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h4>index page</h4>
+
+<a th:href="@{/target}">totarget</a><br>
+<a th:href="@{/testGetMapping}">testGetMapping</a><br>
+<a th:href="@{/testRest}">testRest</a>
+<br>
+========================<br>
+<a th:href="@{/param01(username='quyuan',id=21)}">param01</a><br>
+
+<form method="post" th:action="@{/param02}">
+    id:<input type="text" name="id"><br>
+    name:<input type="text" name="name"><br>
+    password:<input type="password" name="password"><br>
+    <input type="submit" value="submit">
+</form><br>
+
+<a th:href="@{/request}">requestScope</a><br>
+
+<a th:href="@{/json}">withJson</a><br>
+<a th:href="@{/downloadfile}">downfile</a><br>
+
+<form th:action="@{/testUp}" method="post" enctype="multipart/form-data">
+头像：<input type="file" name="photo"><br>
+<input type="submit" value="上传"><br>
+</form><br>
+
+<a th:href="@{/error}">error</a>
+</body>
+</html>

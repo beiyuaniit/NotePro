@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--添加事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--报红没关系，最后用total.xml整合-->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--
+    有些事务想要自己的特性
+        可通过注解来单独指定
+        并注解事务的优先级order设置得比声明的高
+    -->
+    <tx:annotation-driven order="66"></tx:annotation-driven>
+   <!--配置事务切面。advice  http://www.springframework.org/schema/tx  后缀还是tx-->
+    <tx:advice id="myadvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!--name去匹配相应方法。其他的则是设置其属性-->
+            <tx:method name="*select*" read-only="true"/>
+            <tx:method name="*insert*" propagation="REQUIRED"/>
+            <tx:method name="*update*" propagation="REQUIRED"/>
+            <tx:method name="*delete*" propagation="REQUIRED"/>
+            <tx:method name="*" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--绑定切面和切入点-->
+    <aop:config>
+        <!--切入点-->
+        <aop:pointcut id="mypoint" expression="execution(* sm.service.impl.*.*(..))"/>
+        <!--绑定-->
+        <!--优先级order设置得比注解式低-->
+        <aop:advisor advice-ref="myadvice" pointcut-ref="mypoint" order="7"></aop:advisor>
+    </aop:config>
+</beans>
